@@ -12,12 +12,15 @@ import java.util.List;
 @RestController
 public class GenAiController {
 
-    ChatService chatService;
+    private final ChatService chatService;
+    private final RecipeService recipeService;
+    private final ImageService imageService;
 
-    ImageService imageService;
 
-    public GenAiController(ChatService chatService) {
+    public GenAiController(ChatService chatService, RecipeService recipeService, ImageService imageService) {
         this.chatService = chatService;
+        this.recipeService = recipeService;
+        this.imageService = imageService;
     }
 
     @GetMapping("ask-ai")
@@ -54,4 +57,10 @@ public class GenAiController {
         return imageUrls;
     }
 
+    @GetMapping("recipe-creator")
+    public String recipeCreator(@RequestParam String ingredients,
+                                @RequestParam(defaultValue = "any") String cuisine,
+                                @RequestParam(defaultValue = "") String dietaryRestriction) {
+        return recipeService.createRecipe(ingredients, cuisine, dietaryRestriction);
+    }
 }
