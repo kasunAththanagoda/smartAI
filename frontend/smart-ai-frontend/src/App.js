@@ -1,5 +1,11 @@
 import './App.css';
 import { useState } from 'react';
+import ChatComponent from './components/ChatComponent';
+import ImageComponent from './components/ImageComponent';
+import ReciepeComponent from './components/RecipeComponent';
+// import ChatComponent from '@/components/ChatComponent';
+// import ImageComponent from '@/components/ImageComponent';
+// import ReciepeComponent from '@/components/ReciepeComponent';
 
 function App() {
   const [activeTab, setActiveTab] = useState('image-generator');
@@ -19,22 +25,19 @@ function App() {
         {activeTab === 'image-generator' && (
           <div>
             <h2>Image Generator</h2>
-            <input type="text" placeholder="Enter prompt" />
-            <button>Generate Image</button>
+            <ImageComponent />
           </div>
         )}
         {activeTab === 'ask-ai' && (
           <div>
             <h2>Ask Ai</h2>
-            <input type="text" placeholder="Enter prompt" />
-            <button>Ask Ai</button>
+            <ChatComponent />
           </div>
         )}
         {activeTab === 'recipe-creator' && (
           <div>
             <h2>Recipe Generator</h2>
-            <input type="text" placeholder="Enter ingredients" />
-            <button>Generate Recipe</button>
+            <ReciepeComponent />
       </div>
         )}
 </div>
